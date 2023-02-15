@@ -1,0 +1,22 @@
+<h1>Sign up</h1>
+<form action="/signup" method="POST">
+    {{#if mensajeError}}
+    <div>
+        {{mensajeError}}
+    </div>
+    {{/if}}
+    <div>
+        <label for="floatingPassword">Username</label>
+        <input type="text" id="floatingPassword" placeholder="Your name" name="username">
+    </div>
+    <div>
+        <label for="floatingPassword">Password</label>
+        <input type="password" id="floatingPassword" placeholder="Password" name="password">
+    </div>
+    <div>
+        <label for="floatingPassword">Password</label>
+        <input type="password" id="floatingPassword" placeholder="Password" name="passwordRepeat">
+    </div>
+    <button type="submit">Sign Up</button>
+    <a href="/login">Already registered</a>
+</form>
