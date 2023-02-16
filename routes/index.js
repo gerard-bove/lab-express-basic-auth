@@ -67,7 +67,6 @@ router.post("/login", (req, res, next) => {
 
   User.find({username})
   .then(result => {
-    console.log(result)
     if(result.length == 0) {
       res.render("users/login", {mensajeError: "User or password incorrect"});
       return; 
