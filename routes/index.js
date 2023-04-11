@@ -15,11 +15,11 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-router.get("/signup", (req, res, next) => {
+router.get("/signup", isLoggedOut, (req, res, next) => {
   res.render("users/signup");
 })
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", isLoggedOut, (req, res, next) => {
   let {username, password, passwordRepeat} = req.body;
 
   if(username == "" || password == "" || passwordRepeat == "") {
@@ -53,11 +53,11 @@ router.post("/signup", (req, res, next) => {
   .catch(err => next(err));
 })
 
-router.get("/login", (req, res, next) => {
+router.get("/login", isLoggedOut, (req, res, next) => {
   res.render("users/login");
 })
 
-router.post("/login", (req, res, next) => {
+router.post("/login", isLoggedOut, (req, res, next) => {
   let {username, password} = req.body;
 
   if(username == "" || password == "") {
@@ -83,11 +83,11 @@ router.post("/login", (req, res, next) => {
   .catch(err => next(err));
 })
 
-router.get("/profile", (req, res, next) => {
+router.get("/profile", isLoggedIn, (req, res, next) => {
   res.render("users/profile", {username: req.session.currentUser});
 })
 
-router.get("/logout", (req, res, next)=>{
+router.get("/logout", isLoggedIn, (req, res, next)=>{
   req.session.destroy(err => {
     if(err) next(err);
     else res.redirect("/login");
